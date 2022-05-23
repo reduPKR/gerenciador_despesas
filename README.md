@@ -11,6 +11,7 @@ docker network create rede-despesas
 
 #### Criar imagem
  docker image build -t gerenciador-despesa .
+ docker image build -t analizador .
 
 #### Executar docker-compose
 docker-compose up  
