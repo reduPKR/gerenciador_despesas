@@ -1,5 +1,6 @@
 ## Gerenciador de gastos  
 - Java  
+- Python  
 - Docker  
 - Kafka  
 - MySql  
@@ -18,7 +19,7 @@ docker-compose up
   
 #### Criar topicos no kafka  
 kafka-topics --list --bootstrap-server localhost:9092  
-kafka-topics --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 3 --topic GERAR_ANALISE
+kafka-topics --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 3 --topic CALCULAR_DESPESA
 
 ## Arquitetura Limpa  
   

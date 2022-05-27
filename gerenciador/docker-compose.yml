@@ -5,36 +5,34 @@ services:
     ports:
       - "8080:8080"
     networks:
-      - rede-despesas
+      - rede
     depends_on:
       - mysqldb
       - zookeeper
       - kafka
-      - analizador
 
   analizador:
     image: analizador
     ports:
       - "8081:8080"
     networks:
-      - rede-despesas
+      - rede
     depends_on:
-      - mysqldb
       - zookeeper
       - kafka
 
   mysqldb:
     image: mysql:8
     networks:
-      - rede-despesas
+      - rede
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=gerenciador
-#
+
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     networks:
-      - rede-despesas
+      - rede
     depends_on:
       - mysqldb
     environment:
@@ -49,7 +47,7 @@ services:
     ports:
       - "9092:9092"
     networks:
-      - rede-despesas
+      - rede
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
@@ -60,7 +58,7 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
 networks:
-  rede-despesas:
+  rede:
     driver: bridge
     ipam:
       driver: default
