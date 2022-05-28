@@ -8,6 +8,8 @@
 */pom.xml
 
 *.properties
+dados/*
+dados/**
 
 target/
 !.mvn/wrapper/maven-wrapper.jar

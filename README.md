@@ -4,7 +4,14 @@
 - Docker  
 - Kafka  
 - MySql  
+- Clean Architerure  
+- Microserviços  
   
+## Projeto  
+Gerenciado salva no Mysql uma despesa e chama o microserviço geradorCSV  
+O geradorcsv recebe o conteudo via kafka e gera um relatorio.csv  
+Quando o usuario desejar analisar o relatorio basta iniciar o serviço analizador  
+
 ### Docker  
 
 #### rede  
@@ -12,7 +19,8 @@ docker network create rede-despesas
 
 #### Criar imagem
  docker image build -t gerenciador-despesa .
- docker image build -t analizador .
+ docker image build -t analizador .  
+ docker image build -t gerador-csv .
 
 #### Executar docker-compose
 docker-compose up  

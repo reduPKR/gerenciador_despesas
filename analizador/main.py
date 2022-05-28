@@ -1,18 +1,37 @@
-import json
+import pandas as pd
 
-from kafka import KafkaConsumer
+
+def analisar_media_valor_pago():
+    grupo = df.groupby("tipo")
+
+    print("Media de gasto agrupatado pelo tipo de despesa")
+    print(grupo["valorPago"].mean().round(2))
+
+
+def analisar_maior_valor_pago():
+    grupo = df.groupby("tipo")
+
+    print("Maiores gastos agrupatado pelo tipo de despesa")
+    print(grupo["valorPago"].max().round(2))
+
+def analisar_menor_valor_pago():
+    grupo = df.groupby("tipo")
+
+    print("Menores gastos agrupatado pelo tipo de despesa")
+    print(grupo["valorPago"].min().round(2))
+
+
+def analisar_desvio_padrao_valor_pago():
+    grupo = df.groupby("tipo")
+
+    print("Desvio padrão gastos agrupatado pelo tipo de despesa")
+    print(grupo["valorPago"].std().round(2))
+
 
 if __name__ == '__main__':
-    print("iniciou")
+    df = pd.read_csv("../geradorCSV/dados/relatorio.csv", sep=';')
 
-    consumer = KafkaConsumer('CALCULAR_DESPESA',
-                                 bootstrap_servers=['192.168.0.4:9092'],
-                                 group_id=None,
-                                 auto_offset_reset='latest',
-                                 value_deserializer=json.loads,
-                                 api_version=(0, 10))
-
-    for message in consumer:
-        print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
-                                             message.offset, message.key,
-                                             message.value))
+    analisar_maior_valor_pago()
+    analisar_menor_valor_pago()
+    analisar_media_valor_pago()
+    analisar_desvio_padrao_valor_pago()
